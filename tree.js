@@ -33,6 +33,15 @@ class Tree {
     return root;
   }
 
+  insert(value, root = this.root) { // 
+    if(!root) return new Node(value);
+
+    if(root.data > value) root.left = this.insert(value, root.left);
+    if(root.data < value) root.right = this.insert(value, root.right);
+
+    return root;
+  }
+
   prettyPrint(node, prefix = '', isLeft = true) {
     if (node === null) {
       return;
@@ -47,6 +56,8 @@ class Tree {
   }
 }
 
-let tree = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+let tree = new Tree([10, 20, 30, 100, 500]);
+
+tree.insert(15);
 
 tree.prettyPrint(tree.root);
